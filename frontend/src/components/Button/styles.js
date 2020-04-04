@@ -8,7 +8,6 @@ export const StyledButton = styled.button`
   border-radius: 8px;
   color: #fff;
   font-weight: bold;
-  margin-top: 16px;
   text-align: center;
   text-decoration: none;
   font-size: 18px;

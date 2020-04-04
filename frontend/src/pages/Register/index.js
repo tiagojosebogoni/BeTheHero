@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 
 import { Form } from '@unform/web';
@@ -7,9 +7,25 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 
 import logoImg from '../../assets/logo.svg';
+
+import api from '../../services/api';
 import { Container, Content } from './styles';
 
 export default function Register() {
+  const history = useHistory();
+
+  async function handleSubmit(data) {
+    const response = await api.post('ongs', data);
+
+    try {
+      alert(`Seu id de acesso ${response.data.id}`);
+
+      history.push('/');
+    } catch (e) {
+      alert('Erro no seu cadastro.');
+    }
+  }
+
   return (
     <Container>
       <Content>
@@ -25,10 +41,10 @@ export default function Register() {
             Não tenho cadastro
           </Link>
         </div>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Input name="name" placeholder="Nome da ONG" />
           <Input name="email" placeholder="E-mail" />
-          <Input name="whatsApp" placeholder="WhatsApp" />
+          <Input name="whatsapp" placeholder="WhatsApp" />
 
           <div>
             <Input name="city" placeholder="Cidade" />
