@@ -5,8 +5,7 @@ module.exports = {
   async index(req, res) {
     const { page = 1 } = req.query;
 
-    const count = await connection('incidents').count();
-    console.log(count);
+    const [count] = await connection('incidents').count();
 
     const incidents = await connection('incidents')
       .join('ongs', 'ong_id', '=', 'incidents.ong_id')
@@ -18,6 +17,7 @@ module.exports = {
       ]);
 
     res.header('X-Total-Count', count['count(*)']);
+
     return res.json(incidents);
   },
 
