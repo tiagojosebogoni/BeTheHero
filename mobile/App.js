@@ -1,8 +1,10 @@
+import 'intl';
+import 'intl/locale-data/jsonp/pt-BR';
 import React from 'react';
-import { Text } from 'react-native';
+import Routes from './src/routes';
 
-// import { Container } from './styles';
+import 'react-native-gesture-handler';
 
 export default function mobile() {
-  return <Text>ola mundooooo</Text>;
+  return <Routes />;
 }
